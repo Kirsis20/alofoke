@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alofoke Puntuacion</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="icon" href="11.png">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #000, #000, #3c0606);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  h2 {
+    font-size: 2.5em;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  .logo-container img {
+    width: 150px;
+  }
+
+  .banner-img {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  /* Estilo para el formulario */
+  form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    max-width: 400px;
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar los inputs y botón */
+  }
+
+  /* Inputs */
+  input {
+    width: 100%;
+    padding: 14px 20px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+  }
+
+  input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0,123,255,0.3);
+  }
+
+  /* Botón */
+  button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+
+  /* Sección del botón de compra, inicialmente oculta */
+  #zonaCompra {
+    display: none;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .btn-comprar {
+    background-color: #ff9900;
+    color: #fff;
+    padding: 14px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
+  .btn-comprar:hover {
+    background-color: #cc7a00;
+  }
+
+  /* Barra de progreso */
+  .progreso-container {
+    width: 100%;
+    max-width: 500px;
+    height: 25px;
+    background-color: #e0e0e0;
+    border-radius: 12.5px;
+    margin: 30px auto 20px auto;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .progreso {
+    height: 100%;
+    background-color: #ff9900;
+    width: 0%;
+    transition: width 0.5s;
+  }
+
+  /* Compartir */
+  #compartir {
+    text-align: center;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    font-size: 1.1em;
+    color: #333;
+  }
+  #compartir a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 20px;
+    background-color: #25d366; /* WhatsApp verde */
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+  }
+  #compartir a:hover {
+    background-color: #1ebe57;
+    transform: translateY(-2px);
+  }
+
+  /* Pie de página */
+  footer {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #ffffff;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- Logo o banner superior -->
+<div class="logo-container">
+  <img src="6.png" alt="Yipeta Logo" />
+</div>
+
+<h2>Cual es tu participante favorito de La Casa De Alofoke</h2>
+
+<!-- Imagen decorativa -->
+<img src="7.png" alt="Sorteo" class="banner-img" />
+
+<!-- Formulario -->
+<form id="participarForm">
+  <input type="text" id="nombre" placeholder="Nombre" required />
+  <input type="email" id="email" placeholder="Email" required />
+  <button type="submit">Enviar</button>
+</form>
+
+
+<!-- Zona del botón de compra, oculto inicialmente -->
+<div id="zonaCompra">
+  <a href="https://www.paypal.com/donate/?hosted_button_id=78TF457KLRABW" target="_blank" class="btn-comprar">Donar</a>
+</div>
+
+<!-- Barra de progreso -->
+<div class="progreso-container">
+  <div class="progreso" id="progresoBar"></div>
+</div>
+
+<!-- Sección para compartir -->
+<div id="compartir"></div>
+
+<!-- Pie de página -->
+<footer>
+  © 2025 AlofokeRadio - Todos los derechos reservados.
+</footer>
+
+<script>
+  const form = document.getElementById('participarForm');
+  const progresoBar = document.getElementById('progresoBar');
+  const compartirDiv = document.getElementById('compartir');
+  const zonaCompra = document.getElementById('zonaCompra');
+
+  const contactosKey = 'contactosCompartidos';
+
+  function getContactosCompartidos() {
+    const total = localStorage.getItem(contactosKey);
+    return total ? parseInt(total) : 0;
+  }
+
+  function actualizarProgreso() {
+    const total = getContactosCompartidos();
+    const meta = 10; // cada 10 contactos llena la barra
+    const porcentaje = (total / meta) * 100;
+    const porcentajeClamped = porcentaje > 100 ? 100 : porcentaje;
+    progresoBar.style.width = porcentajeClamped + '%';
+  }
+
+  function incrementarContactos() {
+    let total = getContactosCompartidos();
+    total++;
+    localStorage.setItem(contactosKey, total);
+    actualizarProgreso();
+  }
+
+  // Contar referencias en URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const refId = urlParams.get('ref');
+
+  if (refId) {
+    if (!sessionStorage.getItem('ref-' + refId)) {
+      incrementarContactos();
+      sessionStorage.setItem('ref-' + refId, 'true');
+    }
+  }
+
+  // Evento al enviar el formulario
+  form.onsubmit = function(e) {
+    e.preventDefault();
+
+    incrementarContactos();
+
+    // Mostrar el botón de compra en la zona reservada
+    zonaCompra.style.display = 'block';
+
+    // Crear enlace para compartir
+    const urlActual = window.location.origin + window.location.pathname + '?ref=' + Date.now();
+    const mensaje = encodeURIComponent(
+      `¡Participa en el sorteo de la Yipeta! Ingresa aquí: ${urlActual}`
+    );
+    const linkWhatsApp = `https://wa.me/?text=${mensaje}`;
+
+    compartirDiv.innerHTML = `
+      <p>¡Gracias por participar! Comparte con Almenos 10 contactos:</p>
+      <a href="${linkWhatsApp}" target="_blank">Enviar por WhatsApp</a>
+    `;
+
+    form.reset();
+  };
+
+  window.onload = function() {
+    actualizarProgreso();
+  };
+</script>
+
+</body>
+</html>
